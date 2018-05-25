@@ -123,8 +123,8 @@ class Group(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
                               help_text=_("Provide this group's name.")),
         description=HTMLField(_('description'), blank=True),
         slug=models.SlugField(_('slug'), max_length=255, default='',
-            blank=True,
-            help_text=_("Leave blank to auto-generate a unique slug.")),
+                              blank=True,
+                              help_text=_("Leave blank to auto-generate a unique slug.")),
     )
     address = models.TextField(
         verbose_name=_('address'), blank=True)
@@ -187,14 +187,14 @@ class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
 
     translations = TranslatedFields(
         name=models.CharField(_('name'), max_length=255, blank=False,
-            default='', help_text=_("Provide this person's name.")),
+                              default='', help_text=_("Provide this person's name.")),
         slug=models.SlugField(_('unique slug'), max_length=255, blank=True,
-            default='',
-            help_text=_("Leave blank to auto-generate a unique slug.")),
+                              default='',
+                              help_text=_("Leave blank to auto-generate a unique slug.")),
         function=models.CharField(_('role'),
-            max_length=255, blank=True, default=''),
+                                  max_length=255, blank=True, default=''),
         description=HTMLField(_('description'),
-            blank=True, default='')
+                              blank=True, default='')
     )
     phone = models.CharField(
         verbose_name=_('phone'), null=True, blank=True, max_length=100)
@@ -261,7 +261,7 @@ class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
                 url = ''
         return url
 
-    def get_vcard_url(self, language=None):
+    def get_vcard_url(self, language='en'):
         if not language:
             language = get_current_language()
         slug = self.safe_translation_getter(
